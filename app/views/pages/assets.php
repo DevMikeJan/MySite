@@ -18,12 +18,13 @@
             
                 <span class = "php_msg" id = "php_msg"></span>
                 <input type="hidden" class = "asset_id" id = "asset_id" value = '' name = 'asset_id'>
+                <input type="hidden" class = "asset_review_id" id = "asset_review_id" value = '' name = 'asset_review_id'>
                 <input type="hidden" class = "user_id_reviewer" id = "user_id_reviewer" value = '<?php  echo (isLoggedIn()) ? $_SESSION['user_id'] : "none" ?>' name = 'user_id_reviewer'>
                 <input type="hidden" class = "user_name_reviewer" id = "user_name_reviewer" value = '<?php  echo (isLoggedIn()) ? $_SESSION['user_fname'] : "none" ?>' name = 'user_name_reviewer'>
                 <input type="hidden" class = "get_specific_asset_info" id = "get_specific_asset_info" value = '' name = 'get_specific_asset_info'>
                 <input type="hidden" class = "file_link" id = "file_link" value = '<?php echo URLROOTADMINSIDE . '/public/uploadedAssets/';?>' name = 'file_link'>
-        
             </div>
+
             <div class = "asset_action_container">
                 <form action=""class = "asset_action_form" id = "asset_action_form">
                     <button>Download Asset</button>

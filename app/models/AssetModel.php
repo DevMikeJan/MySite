@@ -15,7 +15,10 @@ class AssetModel {
     }
 
     public function getSpecificData($conn, $id) {
-        $conn->query('SELECT * FROM ASSETS_UPLOAD WHERE ASSETFILE_ID = :ASSETFILE_ID');
+        $conn->query('SELECT DISTINCT A.* , B.REF_ASSET_NO 
+                      FROM ASSETS_UPLOAD A LEFT JOIN ASSET_REVIEWS B
+                      ON A.ASSETFILE_ID = B.REF_ASSET_NO 
+                      WHERE A.ASSETFILE_ID = :ASSETFILE_ID');
 
         $conn->bind(':ASSETFILE_ID', $id);
         $conn->execute();

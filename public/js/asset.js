@@ -37,7 +37,7 @@ $(document).ready(function(){
     function loadSpeficAsset() {
         var array = $("#get_specific_asset_info");
         var fileLink = $("#file_link").val();
-
+        var reviewID;
         try {
             var objArray = JSON.parse(array.val());//json used to read php obj array
             isErr = false;
@@ -48,7 +48,16 @@ $(document).ready(function(){
             //code for finally block
         }
         $.each(objArray, function (key, value) {
+
+            if (value.REF_ASSET_NO !== null){
+                reviewID = value.REF_ASSET_NO ;
+            }
+            else {
+                reviewID = ""
+            }
+            
             $("#asset_id").val(value.ASSETFILE_ID);
+            $("#asset_review_id").val(reviewID);
             $("#asset_name").text("Name: "+ value.ASSET_NAME);
             $("#asset_desc").text("Description: "+ value.ASSET_DESC);
             $("#asset_img_src").attr("src",fileLink + value.ASSET_IMG_RAN_NUM);

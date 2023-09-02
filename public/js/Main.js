@@ -5,15 +5,16 @@ $(document).ready(function(){
     $("#displayUname, #dIcon").click(function(){
       if (profile_dropDown_toggle_status == 1) {
         $(".Sub_menu").css("display", "none");
+        $(".Sub_menu").css("z-index" ,"0");
         profile_dropDown_toggle_status = 0;
         
       }
       else if (profile_dropDown_toggle_status == 0) {
         $(".Sub_menu").css("display", "block");
-        $(".Sub_menu").css("z-index" ,"1");
+        $(".Sub_menu").css("position" ,"relative");
+        $(".Sub_menu").css("z-index" ,"2");
         profile_dropDown_toggle_status = 1;
       }
-      
     });
 
     $("#Dropdown_menu").mouseleave(function(){
@@ -22,7 +23,5 @@ $(document).ready(function(){
             profile_dropDown_toggle_status = 0;
         }
     });
-
-
 });
 
