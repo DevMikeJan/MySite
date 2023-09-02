@@ -28,7 +28,8 @@
             <div class = "asset_action_container">
                 <form action=""class = "asset_action_form" id = "asset_action_form">
                     <button>Download Asset</button>
-                    <input type="hidden" class = "isLoggedIn" id = "isLoggedIn" value = '<?php  echo isLoggedIn();?>' name = 'user_id_reviewer'>
+                    <input type="hidden" class = "isLoggedIn" id = "isLoggedIn" value = '<?php  echo isLoggedIn();?>' name = 'isLoggedIn'>
+                    <input type="hidden" class = "isAlreadyRated" id = "isAlreadyRated" value = '<?php  echo isLoggedIn();?>' name = 'isAlreadyRated'>
                     <span class = "set_rate" id = "set_rate">Rate</span>
                 </form>
             </div>

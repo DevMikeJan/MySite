@@ -55,7 +55,7 @@ $(document).ready(function(){
             else {
                 reviewID = ""
             }
-            
+
             $("#asset_id").val(value.ASSETFILE_ID);
             $("#asset_review_id").val(reviewID);
             $("#asset_name").text("Name: "+ value.ASSET_NAME);
@@ -78,8 +78,13 @@ $(document).ready(function(){
     var isOpenRate = false
     $("#set_rate").click(function(){
         var isLoggedIn = $("#isLoggedIn").val();
+        var isRatedAlready = $("#isAlreadyRated").val();
+        var reviewID = $("#asset_review_id").val();
 
         if (isLoggedIn) {
+
+            chkIfAlreadyRated();
+
             if (isOpenRate == false){
                 $(".asset_rate_wrapper").css("width","100%");
                 $(".set_rate").text("Close Rate");
@@ -97,6 +102,32 @@ $(document).ready(function(){
         
        
     });
+
+
+    function chkIfAlreadyRated(userID, link, reviewID){
+
+        var new_form_data = new FormData();
+        new_form_data.append("asset_ref_no", asset_ref_no);
+        new_form_data.append("asset_review_stars", asset_review_stars);
+
+        
+        $.ajax({
+            url: reviewLink,
+            method:'POST',
+            data:new_form_data,
+            contentType:false,
+            cache:false,
+            processData:false,
+            beforeSend:function(){
+              $('#response_msg').html('Loading......');
+            },
+            success:function(data){
+              //$('#get_reviews').val(data);
+              $('#response_msg').html(data);
+              getReviews(asset_ref_no);
+            }
+          });
+    }
 
     //review section
     var starCount = 0
