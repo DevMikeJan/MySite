@@ -1,0 +1,63 @@
+* {
+    color: #f1f1f1;
+}
+
+
+
+.login_Container {
+    width: 30%;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 1px 1px #888888;
+}
+
+.login_Wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+.login_Wrapper h2 {
+    font-size: 30px;
+    font-family: sans-serif;
+}
+
+
+.login_Wrapper form {
+    width: 100%;
+    height: auto;
+    padding-bottom: 10px;
+}
+
+.login_Wrapper form input,select {
+    width: 90%;
+    margin-top: 10px;
+    height: 25px;
+    border-radius: 5px;
+    color: #000;
+}
+
+.login_Wrapper form button {
+    width: 20%;
+    margin-top: 10px;
+    cursor: pointer;
+    text-overflow: clip;
+    background-color: #A9A9A9;
+    color: #000;
+    border: none;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.login_Wrapper .error_message {
+    width:100%;
+    display: block;
+    font-size: 20px;
+    color: 	#800000;
+}
+
+.login_Wrapper .reminder {
+    font-size: 20px;
+    color: #f1f1f1;
+}

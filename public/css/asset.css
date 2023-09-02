@@ -1,0 +1,276 @@
+* {
+    color: #f1f1f1;
+}
+
+
+.asset_container {
+    width: 70%;
+    margin: auto;
+    padding: 5px;
+}
+
+.asset_inner_wrapper {
+    width: 100%;
+    height: 500px;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    gap: 5px;
+    padding: 10px;
+}
+
+
+.asset_info_holder {
+    width: auto;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 70% 30%;
+    gap: 2px;
+    border-radius: 5px;
+    background-color: #09393B;
+    padding: 2px;
+}
+
+.asset_img_holder {
+    width: 100%;
+    overflow: hidden;
+}
+
+.asset_img_holder > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.asset_desc_holder {
+    width: 100%;
+}
+
+.asset_desc_holder > span {
+    width: 100%;
+    display: block;
+}
+
+#asset_id_holder {
+    display: none;
+}
+
+.asset_desc_holder > .view_dtl {
+    width: 30%;
+    text-align: center;
+    margin: auto;
+    color: #000;
+    cursor: pointer;
+    font-size: 14;
+    font-weight: 800;
+}
+
+.asset_desc_holder > .view_dtl:hover {
+    opacity: .5;
+    transition: .5s;
+}
+
+/*View Asset Detail Section*/
+.asset_detail_container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #23302E;
+    z-index: 1;
+    transform: translateY(-1000px);  
+    transition: .5s;
+    display: grid;
+    grid-template-rows: 40% 60%;
+    gap: 2px;
+}
+
+.asset_detail_wrapper {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 30% 45% 25%;
+    background-color: #2B9F94;
+    overflow: hidden;
+}
+
+.asset_comment_sect_container {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.asset_img_wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    overflow: hidden;
+}
+
+.asset_img_wrapper > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.asset_desc_info_wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #EAFFFF;
+    grid-template-rows: 70% 30%;
+    display: grid;
+}
+
+.asset_desc_close_wrapper {
+    width: 20px;
+    height:20px;
+    border-radius: 50px;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background-color: #e1dce9;
+    overflow: hidden;
+}
+
+.asset_desc_close_wrapper > img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.asset_info_section > span {
+    font-weight: 300;
+    font-size: 24px;
+    color: #000;
+}
+
+.asset_action_container {
+    width: 100%;
+    text-align: center;
+    position: relative; 
+}
+
+.asset_action_form {
+    width: 50%;
+    margin: auto;
+    position: absolute;
+    bottom: 2px;
+    left: 25%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+}
+
+.asset_action_form > button, .asset_action_form > span  {
+    width: 100px;
+    border: none;
+    border-radius: 3px;
+    color: #000;
+    background-color: #47739F;
+}
+
+ .asset_action_form > span {
+    cursor: pointer;
+} 
+
+.asset_rate_container {
+    width: 100%;
+    height: 100%;
+}
+
+.rate_stars_container {
+    width: 100%;
+    display: flex;
+    flex-direction: rows;
+    gap: 2px;
+}
+.asset_rate_wrapper {
+    width: 0;
+    height: 100%;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.rate_star1, .rate_star2, .rate_star3, .rate_star4, .rate_star5 {
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+}
+
+.rate_star1 > img,.rate_star2 > img,.rate_star3 > img,.rate_star4 > img,.rate_star5 > img  {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.asset_rate_form {
+    width: 70%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 20% 80%;
+    margin: auto;
+    padding-top: 30px;
+}
+
+.rate_input_container {
+    width: 100%;
+}
+
+.rate_input_container > input {
+    width: 100%;
+    margin-bottom: 3px;
+    border: none;
+    border-radius: 3px;
+    color: #000;
+}
+
+.rate_input_container > button {
+    width: 30%;
+    margin: auto;
+    border-radius: 3px;
+    border: none;
+    color: #000;
+}
+
+
+.asset_ratings {
+    width: 70%;
+    margin: auto;
+    background-color: green;
+}
+
+.tot_stars {
+    width: 100%;
+    height: 80px;
+}
+
+.tot_stars_wrapper {
+    width: 100px;
+    height: 100%;
+    background-color: blue;
+}
+
+.comment_container {
+    width: 100%;
+    height: auto;
+    background-color: violet;
+}
+
+.user_prof_container {
+    display: flex;
+    width: 100%;
+    background-color: #47739F;
+    gap: 4px;
+}
+.user_prof_img {
+    width: 80px;
+    height: 80px;
+    background-color: #09393B;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.user_prof_img > img {
+    width: 100%;
+    height: 100%;
+}
