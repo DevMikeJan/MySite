@@ -20,7 +20,7 @@ class AssetsCtrler extends Controller {
 
         // echo $myJSON;
 
-
+       
         $assetList = $this->showUploadedAssets();
         require_once $this->userPages($view);
     }

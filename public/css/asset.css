@@ -13,7 +13,7 @@
     width: 100%;
     height: 500px;
     display: grid;
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: 30% 30% 30% ;
     gap: 5px;
     padding: 10px;
 }
@@ -23,6 +23,7 @@
     width: auto;
     overflow: hidden;
     display: grid;
+    height: 260px;
     grid-template-rows: 70% 30%;
     gap: 2px;
     border-radius: 5px;
