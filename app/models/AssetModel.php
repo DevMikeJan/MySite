@@ -31,9 +31,9 @@ class AssetModel {
 
     public function setReview($conn, $reviewData){
         $conn->query('INSERT INTO ASSET_REVIEWS(REF_ASSET_NO,ASSET_REVIEW_STARS,ASSET_REVIEW_COMMENT,
-                                                REVIEW_BY_ID,REVIEW_BY_NAME,REVIEW_DATE)
+                                                REVIEW_BY_ID,REVIEW_BY_NAME,REVIEW_DATE,REVIEW_ASSET_UNIQUE_ID)
                                          VALUES(:REF_ASSET_NO,:ASSET_REVIEW_STARS,:ASSET_REVIEW_COMMENT,
-                                                :REVIEW_BY_ID,:REVIEW_BY_NAME,:REVIEW_DATE)');
+                                                :REVIEW_BY_ID,:REVIEW_BY_NAME,:REVIEW_DATE,:REVIEW_ASSET_UNIQUE_ID)');
 
         $conn->bind(':REF_ASSET_NO', $reviewData['asset_ref_no']);
         $conn->bind(':ASSET_REVIEW_STARS', $reviewData['asset_review_stars']);
@@ -41,6 +41,7 @@ class AssetModel {
         $conn->bind(':REVIEW_BY_ID', $reviewData['review_by_id']);
         $conn->bind(':REVIEW_BY_NAME', $reviewData['review_by_name']);
         $conn->bind(':REVIEW_DATE', $reviewData['review_date']);
+        $conn->bind(':REVIEW_ASSET_UNIQUE_ID', $reviewData['asset_id']);
         $inserted = $conn->execute();
 
         if($inserted){
@@ -62,5 +63,29 @@ class AssetModel {
         $fetch = $conn->fetchAll();
 
         return ($row > 0) ? $fetch : false;
+    }
+
+
+    public function isAlreadyReviewed($conn, $assetID, $userID) {
+        $conn->query('SELECT * FROM ASSET_REVIEWS WHERE REF_ASSET_NO = :REF_ASSET_NO AND REVIEW_BY_ID = :REVIEW_BY_ID');
+
+        $conn->bind(':REF_ASSET_NO', $assetID);
+        $conn->bind(':REVIEW_BY_ID', $userID);
+        $conn->execute();
+        $row = $conn->rowCount();
+        $fetch = $conn->fetchAll();
+
+        return ($row > 0) ? true : false;
+    }
+
+    public function chkIfIdExist($conn, $id) {
+        $conn->query('SELECT * FROM ASSET_REVIEWS WHERE REVIEW_ASSET_UNIQUE_ID = :REVIEW_ASSET_UNIQUE_ID');
+
+        $conn->bind(':REVIEW_ASSET_UNIQUE_ID', $id);
+        $conn->execute();
+        $row = $conn->rowCount();
+        $fetch = $conn->fetchAll();
+
+        return ($row > 0) ? true : false;
     }
 }

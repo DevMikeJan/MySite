@@ -65,5 +65,12 @@ Routes::get('Reviews', function(){
     $getReviews->getReviews();
 });
 
+Routes::get('CheckReviewed', function(){
+    $database = new Database();
+    $chckIfReviewed = new AssetsCtrler($database);
+    $chckIfReviewed->chckIfReviewed();
+});
+
+
 
 

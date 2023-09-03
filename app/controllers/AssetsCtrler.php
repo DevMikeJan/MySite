@@ -51,6 +51,7 @@ class AssetsCtrler extends Controller {
 
     public function setReview() {
         $reviews = [
+            'asset_id' => '',
             'asset_ref_no' => '',
             'asset_review_stars' => '',
             'asset_review_comment' => '',
@@ -64,6 +65,7 @@ class AssetsCtrler extends Controller {
             $post = $this->sanitizingPost($_POST);
 
             $assets = [
+                'asset_id' => rand(10000000,99999999),
                 'asset_ref_no' =>  $post['asset_ref_no'],
                 'asset_review_stars' => $post['asset_review_stars'],
                 'asset_review_comment' => $post['asset_review_comment'],
@@ -73,6 +75,13 @@ class AssetsCtrler extends Controller {
                 'response_msg'=>''
             ];
 
+            $ifIdExist = $this->assetModel->chkIfIdExist($this->connection,$assets['asset_id']);
+
+            while ($ifIdExist) {
+                $assets['asset_id'] = rand(10000000,99999999);
+                $ifIdExist = $this->assetModel->chkIfIdExist($this->connection,$assets['asset_id']);
+            }
+            
             $isSave = $this->assetModel->setReview($this->connection,$assets);
                     
             if ($isSave) {
@@ -99,6 +108,24 @@ class AssetsCtrler extends Controller {
             echo json_encode($getReview);
         }
        
+    }
+
+    public function chckIfReviewed(){
+            
+        $reviews = [
+            'reviewer_id' => '',
+            'review_id'=>''
+        ];
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){ 
+            $post = $this->sanitizingPost($_POST);
+
+            $assets = [
+                'reviewer_id' =>  $post['reviewer_id'],
+                'review_id'=> $post['review_id']
+            ];
+            echo $this->assetModel->isAlreadyReviewed($this->connection,$assets['review_id'], $assets['reviewer_id']);
+        }
     }
 
 

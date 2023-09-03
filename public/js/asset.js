@@ -2,7 +2,6 @@ $(document).ready(function(){
     var isViewDtl = 0;
     var isErr = false;
 
-
     $(".view_dtl").click(function(){
         var asset_id = $(this).parent("div").find("span#asset_id_holder").text();
         var link = $("#assetLink").val();
@@ -33,7 +32,6 @@ $(document).ready(function(){
           });
     });
 
-
     function loadSpeficAsset() {
         var array = $("#get_specific_asset_info");
         var fileLink = $("#file_link").val();
@@ -48,7 +46,6 @@ $(document).ready(function(){
             //code for finally block
         }
         $.each(objArray, function (key, value) {
-
             if (value.REF_ASSET_NO !== null){
                 reviewID = value.REF_ASSET_NO ;
             }
@@ -75,59 +72,56 @@ $(document).ready(function(){
         }
     });
 
+    function chkIfAlreadyRated(userID, link, reviewID){ 
+        var new_form_data = new FormData();
+        var isReviewed= false;
+
+        new_form_data.append("reviewer_id", userID);
+        new_form_data.append("review_id", reviewID);
+
+        $.ajax({ 
+            method:'POST',
+            data: new_form_data, 
+            url: link, 
+            contentType:false,
+            cache:false,
+            processData:false,
+        }).done(function (response) { 
+            $('#chkIfReviewed').val(response);
+            isReviewed =$('#chkIfReviewed').val();
+
+            if (isReviewed == "") {
+                if (isOpenRate == false){
+                    $(".asset_rate_wrapper").css("width","100%");
+                    $(".set_rate").text("Close Rate");
+                    isOpenRate= true;
+                }
+                else if (isOpenRate == true) {
+                    $(".asset_rate_wrapper").css("width","0");
+                    $(".set_rate").text("Rate");
+                    isOpenRate= false;
+                }
+            }
+            else {
+                alert("You've already rated this asset");
+            }
+        }) ;
+    }
+    
     var isOpenRate = false
     $("#set_rate").click(function(){
         var isLoggedIn = $("#isLoggedIn").val();
-        var isRatedAlready = $("#isAlreadyRated").val();
+        var reviewer_id = $("#user_id_reviewer").val();
+        var isRatedAlreadyLink = $("#isAlreadyRated").val();
         var reviewID = $("#asset_review_id").val();
 
         if (isLoggedIn) {
-
-            chkIfAlreadyRated();
-
-            if (isOpenRate == false){
-                $(".asset_rate_wrapper").css("width","100%");
-                $(".set_rate").text("Close Rate");
-                isOpenRate= true;
-            }
-            else if (isOpenRate == true) {
-                $(".asset_rate_wrapper").css("width","0");
-                $(".set_rate").text("Rate");
-                isOpenRate= false;
-            }
+             chkIfAlreadyRated(reviewer_id,isRatedAlreadyLink,reviewID);
         }
         else {
             alert("Please Sign-in First");
         }
-        
-       
     });
-
-
-    function chkIfAlreadyRated(userID, link, reviewID){
-
-        var new_form_data = new FormData();
-        new_form_data.append("asset_ref_no", asset_ref_no);
-        new_form_data.append("asset_review_stars", asset_review_stars);
-
-        
-        $.ajax({
-            url: reviewLink,
-            method:'POST',
-            data:new_form_data,
-            contentType:false,
-            cache:false,
-            processData:false,
-            beforeSend:function(){
-              $('#response_msg').html('Loading......');
-            },
-            success:function(data){
-              //$('#get_reviews').val(data);
-              $('#response_msg').html(data);
-              getReviews(asset_ref_no);
-            }
-          });
-    }
 
     //review section
     var starCount = 0
@@ -159,7 +153,6 @@ $(document).ready(function(){
               $('#response_msg').html('Loading......');
             },
             success:function(data){
-              //$('#get_reviews').val(data);
               $('#response_msg').html(data);
               getReviews(asset_ref_no);
             }
@@ -169,7 +162,6 @@ $(document).ready(function(){
     var isRowsEmpty;
     function getReviews($asset_ref_no){
         var reviewLink = $("#reviewsLink").val();
-
         var new_form_data = new FormData();
         new_form_data.append("asset_ref_no", $asset_ref_no);
 
@@ -180,14 +172,18 @@ $(document).ready(function(){
             contentType:false,
             cache:false,
             processData:false,
+
             beforeSend:function(){
               //$('#response_msg').html('Loading......');
             },
+
             success:function(data){
               $('#get_reviews').val(data);
               var array = $("#get_reviews");
               var fileLink = $("#file_link").val();
               var imgSrc = $("#profile_img_src").val();
+              var userLoggedInID = $("#user_id_reviewer").val();
+
               var objArray;
               var img ='', reviewerID = '', reviewerName = '';
 
@@ -213,6 +209,13 @@ $(document).ready(function(){
                 $('#asset_ratings').children().not('h5').remove();
 
                 if (isRowsEmpty == false) {
+
+                    if (isOpenRate == true) {
+                        $(".asset_rate_wrapper").css("width","0");
+                        $(".set_rate").text("Rate");
+                        isOpenRate= false;
+                    }
+
                     $.each(objArray, function (key, value) {
                    
                         if (value.PROFILE_IMG == null){
@@ -224,12 +227,14 @@ $(document).ready(function(){
                         }
                         
                         if (value.REVIEW_BY_NAME == null) {
-                            reviewerID = "Anonimous";
+                            reviewerName = "Anonimous";
                         }
                         else {
-                            reviewerID = value.REVIEW_BY_NAME;
+                            reviewerName = value.REVIEW_BY_NAME;
                         }
-    
+
+                        value.REVIEW_BY_ID == userLoggedInID ? $("#asset_review_id").val(value.REF_ASSET_NO) : $("#asset_review_id").val("");
+                        
                         $('#asset_ratings').append("<div class = 'tot_stars'>\
                                                                         <div class = 'tot_stars_wrapper'>\
                                                                             <span></span>\
@@ -241,7 +246,7 @@ $(document).ready(function(){
                                                                                 "+img+"\
                                                                             </div>\
                                                                             <div class = 'user_name' id = 'user_name'>\
-                                                                                <span class = 'reviewed_by_name' id = 'reviewed_by_name'>"+ reviewerID +"</span><br>\
+                                                                                <span class = 'reviewed_by_name' id = 'reviewed_by_name'>"+ reviewerName +"</span><br>\
                                                                                 <span class = 'reviewed_stars' id = 'reviewed_stars'>"+ value.ASSET_REVIEW_STARS+"</span><br>\
                                                                                 <span class = 'reviewed_date' id = 'reviewed_date'>"+ value.REVIEW_DATE+"</span><br>\
                                                                                 <span class = 'reviewed_comment' id = 'reviewed_comment'>"+ value.ASSET_REVIEW_COMMENT+"</span>\
