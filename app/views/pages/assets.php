@@ -18,6 +18,7 @@
                 <span class = "php_msg" id = "php_msg"></span>
                 <input type="hidden" class = "asset_id" id = "asset_id" value = '' name = 'asset_id'>
                 <input type="hidden" class = "asset_review_id" id = "asset_review_id" value = '' name = 'asset_review_id'>
+                <input type="hidden" class = "starIconPath" id = "starIconPath" value = '<?php echo URLROOTADMINSIDE . '/public/icons/';?>' name = 'starIconLink'>
                 <input type="hidden" class = "user_id_reviewer" id = "user_id_reviewer" value = '<?php  echo (isLoggedIn()) ? $_SESSION['user_id'] : "none" ?>' name = 'user_id_reviewer'>
                 <input type="hidden" class = "user_name_reviewer" id = "user_name_reviewer" value = '<?php  echo (isLoggedIn()) ? $_SESSION['user_fname'] : "none" ?>' name = 'user_name_reviewer'>
                 <input type="hidden" class = "get_specific_asset_info" id = "get_specific_asset_info" value = '' name = 'get_specific_asset_info'>
@@ -72,6 +73,11 @@
             <input id = "profile_img_src" type="hidden" value = '<?php echo URLROOTADMINSIDE . '/public/icons/';?>'>
         <div class = 'asset_ratings' id = "asset_ratings">
             <h5>Asset Ratings</h5>
+            <div class = 'tot_stars'>
+                <div class = 'tot_stars_wrapper'>
+                    <span></span>
+                </div>
+            </div>                                                 
         </div>
     </div>
 </div>

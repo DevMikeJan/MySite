@@ -185,9 +185,15 @@ $(document).ready(function(){
               var fileLink = $("#file_link").val();
               var imgSrc = $("#profile_img_src").val();
               var userLoggedInID = $("#user_id_reviewer").val();
-
+              var starsPath = $("#starIconPath").val();
+              var starCounts = 0;
+              var starIcons = '';
+              var maxOverAllStars = 5000;
+              var overAllTotStars = 0;
               var objArray;
               var img ='', reviewerID = '', reviewerName = '';
+              var wStars = "";
+              var woStars = "";
 
                 try {
                     if (array.val() != "false")
@@ -208,7 +214,7 @@ $(document).ready(function(){
                     //code for finally block
                 }
 
-                $('#asset_ratings').children().not('h5').remove();
+                $('#asset_ratings').children().not('h5,.tot_stars').remove();
 
                 if (isRowsEmpty == false) {
 
@@ -219,13 +225,15 @@ $(document).ready(function(){
                     }
 
                     $.each(objArray, function (key, value) {
+
+                        starCounts = value.ASSET_REVIEW_STARS;
+                        overAllTotStars += starCounts
                    
                         if (value.PROFILE_IMG == null){
                             img =  "<img src='"+ imgSrc +"User.png'>";
                         }
                         else {
                             img =   "<img src='"+ imgSrc + value.PROFILE_IMG +"' alt=''>";
-                          
                         }
                         
                         if (value.REVIEW_BY_NAME == null) {
@@ -235,31 +243,41 @@ $(document).ready(function(){
                             reviewerName = value.REVIEW_BY_NAME;
                         }
 
-                       
-                        
                         if (value.REVIEW_BY_ID == userLoggedInID) {
                             $("#asset_review_id").val(value.REF_ASSET_NO);
                         }
-                        
-                        $('#asset_ratings').append("<div class = 'tot_stars'>\
-                                                                        <div class = 'tot_stars_wrapper'>\
-                                                                            <span></span>\
-                                                                        </div>\
-                                                                    </div>\
-                                                                    <div class = 'comment_container'>\
+
+                        for(var i = 0; i < starCounts; i++) {
+                            wStars += "<img src = '"+ starsPath +"/selectedRateStar.png' >";
+                        }
+
+                        for(var i = starCounts; i < 5; i++) {
+                             woStars += "<img src = '"+ starsPath +"/unSelectedRateStar.png' >";
+                        }
+
+                        starIcons = "<div class = 'reviewed_stars_container' id = 'reviewed_stars_container'>\
+                                        "+ wStars +"\
+                                        "+ woStars +"\
+                                     </div>"
+                      
+                        $('#asset_ratings').append("<div class = 'comment_container'>\
                                                                         <div class = 'user_prof_container'>\
                                                                             <div class = 'user_prof_img'>\
-                                                                                "+img+"\
+                                                                                "+ img +"\
                                                                             </div>\
                                                                             <div class = 'user_name' id = 'user_name'>\
                                                                                 <span class = 'reviewed_by_name' id = 'reviewed_by_name'>"+ reviewerName +"</span><br>\
-                                                                                <span class = 'reviewed_stars' id = 'reviewed_stars'>"+ value.ASSET_REVIEW_STARS+"</span><br>\
+                                                                                <span class = 'reviewed_stars' id = 'reviewed_stars'>"+ starIcons +"</span><br>\
                                                                                 <span class = 'reviewed_date' id = 'reviewed_date'>"+ value.REVIEW_DATE+"</span><br>\
                                                                                 <span class = 'reviewed_comment' id = 'reviewed_comment'>"+ value.ASSET_REVIEW_COMMENT+"</span>\
                                                                             </div>\
                                                                         </div>\
                                                                     </div>");
                     });
+
+                    overAllTotStars = (overAllTotStars / 100) * maxOverAllStars
+
+                    $(".tot_stars_wrapper > span").text(overAllTotStars);
                 }
             }
           });
