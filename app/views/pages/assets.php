@@ -76,6 +76,12 @@
             <div class = 'tot_stars'>
                 <div class = 'tot_stars_wrapper'>
                     <span></span>
+                    <div class = "progress_container" id = "progress_container">
+                        <div class = "progress_stars" id = "progress_stars">
+                        </div>
+                            <img class = "star_bars" id = 'star_bars' src = '<?php echo URLROOTADMINSIDE . '/public/icons/fivestars.png';?>'>
+                    </div>
+                 
                 </div>
             </div>                                                 
         </div>

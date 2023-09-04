@@ -194,6 +194,7 @@ $(document).ready(function(){
               var img ='', reviewerID = '', reviewerName = '';
               var wStars = "";
               var woStars = "";
+              var totBar;
 
                 try {
                     if (array.val() != "false")
@@ -274,16 +275,32 @@ $(document).ready(function(){
                                                                         </div>\
                                                                     </div>");
                     });
+                    overAllTotStars = (5000 / maxOverAllStars) * 5
 
-                    overAllTotStars = (overAllTotStars / 100) * maxOverAllStars
+                    totBar = (5000 / maxOverAllStars) * 100;
+                   
 
-                    $(".tot_stars_wrapper > span").text(overAllTotStars);
+                    overAllTotStars = roundNumber(overAllTotStars, 1);
+                 
+                    $(".tot_stars_wrapper > span").text(overAllTotStars + " Out Of " + 5);
+
+                    $("#progress_container").css({"background-color":"#f1f1f1","width":"100%", "border-radius":"50px", 
+                                                  "overflow":"hidden","position":"relative","overflow":"hidden","padding":"0"});
+                    $("#progress_stars").css({"background-color":"yellow", "width":"" + totBar + "%", "height":"20px"});
+                    $("#star_bars").css({"width":"100%", "height":"30px","position":"absolute", "top":"0"});
+
                 }
             }
           });
 
        
     }
+
+    function roundNumber(number, decimal_digit) {
+        var powerOften = Math.pow( 10, decimal_digit );
+        var result = Math.round( number * powerOften ) / powerOften;
+        return result;
+     }
 
     //rate section
     var isStar1Selected = false
