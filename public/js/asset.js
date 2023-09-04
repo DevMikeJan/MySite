@@ -113,7 +113,7 @@ $(document).ready(function(){
         var isLoggedIn = $("#isLoggedIn").val();
         var reviewer_id = $("#user_id_reviewer").val();
         var isRatedAlreadyLink = $("#isAlreadyRated").val();
-        var reviewID = $("#asset_review_id").val();
+        var reviewID = $("#asset_id").val();
 
         if (isLoggedIn) {
              chkIfAlreadyRated(reviewer_id,isRatedAlreadyLink,reviewID);
@@ -134,6 +134,8 @@ $(document).ready(function(){
         var asset_review_comment = $("#rate_comment").val();
         var review_by_id = $("#user_id_reviewer").val();
         var review_by_name = $("#user_name_reviewer").val();
+
+      
 
         var new_form_data = new FormData();
         new_form_data.append("asset_ref_no", asset_ref_no);
@@ -233,7 +235,11 @@ $(document).ready(function(){
                             reviewerName = value.REVIEW_BY_NAME;
                         }
 
-                        value.REVIEW_BY_ID == userLoggedInID ? $("#asset_review_id").val(value.REF_ASSET_NO) : $("#asset_review_id").val("");
+                       
+                        
+                        if (value.REVIEW_BY_ID == userLoggedInID) {
+                            $("#asset_review_id").val(value.REF_ASSET_NO);
+                        }
                         
                         $('#asset_ratings').append("<div class = 'tot_stars'>\
                                                                         <div class = 'tot_stars_wrapper'>\
