@@ -282,9 +282,9 @@ $(document).ready(function(){
                                                                         </div>\
                                                                     </div>");
                     });
-                    overAllTotStars = (3000 / maxOverAllStars) * 5
+                    overAllTotStars = (overAllTotStars / maxOverAllStars) * 5
 
-                    totBar = (3000 / maxOverAllStars) * 100;
+                    totBar = (overAllTotStars / maxOverAllStars) * 100;
                    
 
                     overAllTotStars = roundNumber(overAllTotStars, 1);
