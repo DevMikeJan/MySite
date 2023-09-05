@@ -288,8 +288,11 @@ $(document).ready(function(){
                    
 
                     overAllTotStars = roundNumber(overAllTotStars, 1);
-                 
+                    
                     $(".tot_stars_wrapper > span").text(overAllTotStars + " Out Of " + 5);
+                }
+                else {
+                    $(".tot_stars_wrapper > span").text("No Ratings Yet");
                 }
             }
           });
