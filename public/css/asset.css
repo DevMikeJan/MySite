@@ -89,7 +89,7 @@
     height: 100%;
     display: grid;
     grid-template-columns: 30% 45% 25%;
-    background-color: #2B9F94;
+    background-color: #47739F;
     overflow: hidden;
 }
 
@@ -237,35 +237,43 @@
 .asset_ratings {
     width: 70%;
     margin: auto;
-    background-color: green;
+    background-color: #09393B;
+    padding: 2px;
+    border-bottom-left-radius: 50px ;
+    overflow: hidden;
 }
+
 
 .tot_stars {
     width: 100%;
-    height: 80px;
+    height: 50px;
 }
 
 .tot_stars_wrapper {
     width: 100px;
     height: 100%;
-    background-color: blue;
 }
 
 .comment_container {
     width: 100%;
     height: auto;
-    background-color: violet;
 }
 
 .user_prof_container {
     display: flex;
     width: 100%;
     background-color: #47739F;
-    gap: 4px;
+    gap: 5px;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+    padding: 2px;
 }
+
 .user_prof_img {
     width: 80px;
-    height: 80px;
+    height: 50%;
+    margin-top: auto;
+    margin-bottom : auto;
     background-color: #09393B;
     overflow: hidden;
     border-radius: 50%;
@@ -294,5 +302,3 @@
     width: 20px;
     height: 100%;
 }
-
-

@@ -226,10 +226,6 @@ $(document).ready(function(){
                     }
 
                     $.each(objArray, function (key, value) {
-
-                        starCounts = value.ASSET_REVIEW_STARS;
-                        overAllTotStars += starCounts
-                   
                         if (value.PROFILE_IMG == null){
                             img =  "<img src='"+ imgSrc +"User.png'>";
                         }
@@ -248,6 +244,16 @@ $(document).ready(function(){
                             $("#asset_review_id").val(value.REF_ASSET_NO);
                         }
 
+                        starCounts = 0;
+
+                        wStars = ""
+                        woStars = ""
+
+                        starCounts = value.ASSET_REVIEW_STARS;
+                        overAllTotStars += starCounts
+
+
+
                         for(var i = 0; i < starCounts; i++) {
                             wStars += "<img src = '"+ starsPath +"/selectedRateStar.png' >";
                         }
@@ -255,6 +261,7 @@ $(document).ready(function(){
                         for(var i = starCounts; i < 5; i++) {
                              woStars += "<img src = '"+ starsPath +"/unSelectedRateStar.png' >";
                         }
+
 
                         starIcons = "<div class = 'reviewed_stars_container' id = 'reviewed_stars_container'>\
                                         "+ wStars +"\
@@ -275,25 +282,18 @@ $(document).ready(function(){
                                                                         </div>\
                                                                     </div>");
                     });
-                    overAllTotStars = (5000 / maxOverAllStars) * 5
+                    overAllTotStars = (3000 / maxOverAllStars) * 5
 
-                    totBar = (5000 / maxOverAllStars) * 100;
+                    totBar = (3000 / maxOverAllStars) * 100;
                    
 
                     overAllTotStars = roundNumber(overAllTotStars, 1);
                  
                     $(".tot_stars_wrapper > span").text(overAllTotStars + " Out Of " + 5);
-
-                    $("#progress_container").css({"background-color":"#f1f1f1","width":"100%", "border-radius":"50px", 
-                                                  "overflow":"hidden","position":"relative","overflow":"hidden","padding":"0"});
-                    $("#progress_stars").css({"background-color":"yellow", "width":"" + totBar + "%", "height":"20px"});
-                    $("#star_bars").css({"width":"100%", "height":"30px","position":"absolute", "top":"0"});
-
                 }
             }
           });
 
-       
     }
 
     function roundNumber(number, decimal_digit) {
