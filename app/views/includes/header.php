@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/registration.css"/>
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/login.css"/>
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/asset.css"/>
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/profile.css"/>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -11,6 +11,7 @@ use App\controllers\RegistrationCtrler;
 use App\controllers\LoginCtrler;
 use App\controllers\LogoutCtrler;
 use App\controllers\AssetsCtrler;
+use App\controllers\AccountCtrler;
 
 //echo rand(100000000,999999999);
 
@@ -70,6 +71,14 @@ Routes::get('CheckReviewed', function(){
     $chckIfReviewed = new AssetsCtrler($database);
     $chckIfReviewed->chckIfReviewed();
 });
+
+
+Routes::get('Profile', function(){
+    $database = new Database();
+    $viewProfile = new AccountCtrler($database);
+    $viewProfile->viewProfile('accountProfile');
+});
+
 
 
 

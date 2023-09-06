@@ -30,7 +30,7 @@
                                     <a href="">Download</a>
                                 </li>
                                 <li>
-                                    <a href="">Account</a>
+                                    <a href="<?php echo URLROOT; ?>/Profile">Account</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo URLROOT; ?>/Logout">Logout</a>

@@ -14,13 +14,6 @@ class AssetsCtrler extends Controller {
 
     public function viewPage($view) {
 
-        // $myArr = array("John", "Mary", "Peter", "Sally");
-
-        // $myJSON = json_encode($myArr);
-
-        // echo $myJSON;
-
-       
         $assetList = $this->showUploadedAssets();
         require_once $this->userPages($view);
     }
