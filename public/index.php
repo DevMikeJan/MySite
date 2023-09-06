@@ -79,6 +79,12 @@ Routes::get('Profile', function(){
     $viewProfile->viewProfile('accountProfile');
 });
 
+Routes::get('UploadProfilePic', function(){
+    $database = new Database();
+    $viewProfile = new AccountCtrler($database);
+    $viewProfile->uploadProfilePic();
+});
+
 
 
 

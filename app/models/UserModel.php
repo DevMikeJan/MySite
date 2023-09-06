@@ -96,4 +96,32 @@ class UserModel  {
 
         return ($con->execute()) ? true : false;
     }
+
+
+    public function uploadProfilePic($con, $data){
+        $con->query('INSERT INTO USER_PROFILE_IMG(USER_CONTROL_NO, PROFILE_IMG, UPLOADED_DATE)
+                                           VALUES(:USER_CONTROL_NO, :PROFILE_IMG, :UPLOADED_DATE)');
+
+        $con->bind(':USER_CONTROL_NO', $data['user_id']);    
+        $con->bind(':PROFILE_IMG', $data['profilePic']);   
+        $con->bind(':UPLOADED_DATE', $data['dateUpload']);      
+        
+        $inserted = $conn->execute();
+
+        if($inserted){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function getProfilePic($con, $data){
+        $con->query('SELECT * FROM USER_PROFILE_IMG WHERE USER_CONTROL_NO = :USER_CONTROL_NO');
+
+        $con->bind(':USER_CONTROL_NO', $data['user_id']); 
+        $con->execute();     
+        $rows = $con->fetchAll();
+        return $rows;                
+    }
 }

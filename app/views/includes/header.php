@@ -28,6 +28,7 @@
     <script src = "<?php echo URLROOT; ?>/public/js/jquery.js"></script>
     <script src = "<?php echo URLROOT; ?>/public/js/Main.js"></script>
     <script src = "<?php echo URLROOT; ?>/public/js/asset.js"></script>
+    <script src = "<?php echo URLROOT; ?>/public/js/profile.js"></script>
 </head>
 
 <body>

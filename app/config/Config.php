@@ -8,6 +8,7 @@
 
  //approot
  define('APPROOT', dirname(dirname(__FILE__)));
+ define('UPLOADROOT', dirname(dirname(dirname(__FILE__))));
 
  define("ADMINAPPROOT", dirname(dirname(dirname(__FILE__))));
  //urlroot
