@@ -13,13 +13,16 @@
 ?>
 
 <div class = "profile_container">
-    
     <div class = "profile_wrapper">
         <div class = "profile_top_wrapper">
             <div class = "profile_img_wrapper">
                 <div class = "profile_inner_wrapper">
                     <div class = "profile_img_holder">
-                        <img class = "profile_img_uploaded" id = "profile_img_uploaded" src="<?php echo URLROOTADMINSIDE . '/public/icons/';?>defaultUserProf.png" alt="">
+                        <?php if(is_null($_SESSION['profile_pic'])): ?>
+                            <img class = "profile_img_uploaded" id = "profile_img_uploaded" src="<?php echo URLROOTADMINSIDE . '/public/icons/';?>defaultUserProf.png" alt="">
+                        <?php else: ?>
+                            <img class = "profile_img_uploaded" id = "profile_img_uploaded" src="<?php echo URLROOTADMINSIDE . '/public/profilePics/'.$_SESSION['profile_pic'];?>" alt="">
+                        <?php endif; ?>
                     </div>
                     <div class = "profile_img_selector">
                         <form action=""  method = "POST" class = "uploadProfileImg"  id = "uploadProfileImg" enctype="multipart/form-data" >

@@ -67,6 +67,8 @@ class LoginCtrler extends Controller {
         $_SESSION['user_lname'] = $user->LNAME;
         $_SESSION['user_email'] = $user->EMAIL;
         $_SESSION['user_type'] = $user->USER_ACCESS;
+        $_SESSION['profile_pic'] = $user->PROFILE_IMG;
+        $_SESSION['cover_pic'] = $user->COVER_IMG;
 
         if($user->user_type != '1')
             header('location:' . URLROOT . '/');

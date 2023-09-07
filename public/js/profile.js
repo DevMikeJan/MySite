@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-  
-
     $(".profile_img").click(function(){
         $("input.profile_choose_img").trigger("click");
     });
@@ -41,8 +39,7 @@ $(document).ready(function(){
             processData:false,
             success:function(data){
               $('#profile_uploaded_img').val(data);
-              alert(data);
-              //setProfile();
+              setProfile();
             }
         });
     });
@@ -55,10 +52,8 @@ $(document).ready(function(){
             var objArray = JSON.parse(uploadedPic.val());//json used to read php obj array
             isErr = false;
         } catch(err) {
-            alert(objArray);
             isErr= true;
         } 
-
         $.each(objArray, function (key, value) {
             if (value.PROFILE_IMG !== null){
                 img = value.PROFILE_IMG ;
@@ -66,9 +61,7 @@ $(document).ready(function(){
             else {
                 img = ""
             }
-            
             $("#profile_img_uploaded").attr("src",profilePath + img);
-
         });
     }
 

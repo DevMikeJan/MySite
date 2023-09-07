@@ -21,6 +21,7 @@ class AccountCtrler extends Controller {
         $user_data = [
             'user_id' => '',
             'profilePic' => '',
+            'acctFile' => '' ,
             'dateUpload' => '',
             'randomNum' => ''
             ];
@@ -31,6 +32,7 @@ class AccountCtrler extends Controller {
                 $user_data = [
                     'user_id' => $post['user_id'],
                     'profilePic' => $_FILES['profilePic'],
+                    'acctFile' => '' ,
                     'dateUpload' => date("Y-m-d H:i:s a") ,
                     'randomNum' => mt_rand()
                     ];
@@ -51,6 +53,8 @@ class AccountCtrler extends Controller {
                 
                     $sizelimit = 90000000;
                     $errorfile = 0;
+
+                    $user_data['acctFile'] =  $user_data['user_id'] . $user_data['randomNum']. "." . $actualExt;
                 
                     $valid_file_name = "/^[a-z A-Z 0-9]*$/";
         
@@ -58,16 +62,23 @@ class AccountCtrler extends Controller {
                         if($fileError == $errorfile){
                             if($fileSize <= $sizelimit){
 
-                                $fileToMove = $user_data['user_id'] . $user_data['randomNum']. "." . $actualExt;
-                                $setPathForFileUpload = UPLOADROOT .'/public/profilePics/'. basename($fileToMove);
+                                $fileToMove = $user_data['acctFile'];
+                                $setPathForFileUpload = OUTSIDEPROJ .'/MySiteAdminSide/public/profilePics/'. basename($fileToMove);
                                 $movedImgFile = move_uploaded_file($fileTmpName, $setPathForFileUpload);
 
                                 if ($movedImgFile){
-                                    $isUploaded = $this->userModel->uploadProfilePic($this->connection, $user_data);
 
+                                    $isExist = $this->userModel->chkExistingProfile($this->connection, $user_data);
+                                    
+                                    if (!$isExist) {
+                                        $isUploaded = $this->userModel->uploadProfilePic($this->connection, $user_data);
+                                    }
+                                    else {
+                                        $isUploaded = $this->userModel->uptDateProfilePic($this->connection, $user_data);
+                                    }
+                                    
                                     IF ($isUploaded) {
                                         echo json_encode($this->userModel->getProfilePic($this->connection, $user_data));
-                                        
                                     }
                                 }
                             }
