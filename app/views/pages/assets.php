@@ -70,7 +70,7 @@
         </div>
     </div>
     <div class = "asset_comment_sect_container" id="asset_comment_sect_container">
-            <input id = "profile_img_src" type="hidden" value = '<?php echo URLROOTADMINSIDE . '/public/icons/';?>'>
+            <input id = "profile_img_src" type="hidden" value = '<?php echo URLROOTADMINSIDE . '/public/profilePics/';?>'>
         <div class = 'asset_ratings' id = "asset_ratings">
             <h5>Asset Ratings</h5>
             <div class = 'tot_stars'>

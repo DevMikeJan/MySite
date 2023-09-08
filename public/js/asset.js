@@ -227,10 +227,10 @@ $(document).ready(function(){
 
                     $.each(objArray, function (key, value) {
                         if (value.PROFILE_IMG == null){
-                            img =  "<img src='"+ imgSrc +"User.png'>";
+                            img =  "<img class = 'default_pic' src='"+ imgSrc + "User.png'>";
                         }
                         else {
-                            img =   "<img src='"+ imgSrc + value.PROFILE_IMG +"' alt=''>";
+                            img =   "<img class = 'uploaded_pic' src='"+ imgSrc + value.PROFILE_IMG +"'>";
                         }
                         
                         if (value.REVIEW_BY_NAME == null) {
