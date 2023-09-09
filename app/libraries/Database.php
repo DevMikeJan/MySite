@@ -82,6 +82,8 @@ namespace app\libraries; use PDO;
             return $this->statement->fetchAll(PDO::FETCH_OBJ);
         }
 
+    
+
         //Return a specific row as an object
         public function single() {
             return $this->statement->fetch(PDO::FETCH_OBJ);
