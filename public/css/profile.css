@@ -15,7 +15,24 @@
     width: 100%;
     margin: auto;
     height: 20rem;
+}
+
+.profile_cover_container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 2px;
+}
+
+.profile_cover_wrapper {
+    width: 100%;
+    height: 100%;
     background-color: #423155;
+}
+
+.profile_cover_act_img {
+    width: 100%;
+    height: 100%;
 }
 
 .profile_img_wrapper {
@@ -25,7 +42,9 @@
     height: 200px;
     border-radius: 50%;
     background-color: #f1f1f1;
+    z-index: 3;
 }
+
 
 .profile_inner_wrapper {
     position: relative;
@@ -54,6 +73,10 @@
     cursor: pointer;
 }
 
+.profile_choose_cover {
+    display: none;
+}
+
 .profile_img_selector {
     position: absolute;
     right: 1rem;
@@ -63,6 +86,7 @@
     border-radius: 50%;
     background-color: #f1f1f1;
     padding: 2px;
+    z-index: 2;
 }
 
 .profile_img_holder {
@@ -71,6 +95,7 @@
     height: 100%;
     border-radius: 50%;
     overflow: hidden;
+    z-index: 2;
 }
 
 .profile_img_uploaded {
@@ -78,6 +103,54 @@
     height: 100%;
 }
 
+
 .profile_choose_img {
     display: none;
 }
+
+
+.profile_content {
+    width: 100%;
+    height: 10rem;
+    background-color: #17171A;
+    display: grid;
+    grid-template-ROWS: 50% 50%;
+}
+
+.profile_user_name_holder {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+
+
+.profile_user_name_wrapper {
+    position: absolute;
+    left: 13rem;
+    font-size: 1.5rem;
+}
+
+.profile_edit_button_holder {
+    position: absolute;
+    left: 13rem;
+    bottom: 2px;
+}
+
+.profile_edit_button_holder > span {
+    width: 100%;
+    font-size: 15px;
+    background-color: #EFEEFF;
+    border-radius: 3px;
+    color:#000;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.profile_edit_button_holder > span:hover {
+    opacity: 0.5;
+    transition: .5s;
+}
+
+

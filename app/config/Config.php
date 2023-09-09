@@ -17,5 +17,11 @@
  define('URLROOT', 'http://localhost/Projects/MySite');
  define('URLROOTADMINSIDE', 'http://localhost/Projects/MySiteAdminSide');
 
+ //what to upload
+ define('PROFILEPIC', 'PROFILE PIC');
+ define('PROFILECOVER', 'PROFILE COVER');
+
  //sitename
  define('SITENAME', 'MySite');
+
+ 

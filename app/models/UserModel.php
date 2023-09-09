@@ -67,13 +67,9 @@ class UserModel  {
     }
 
     public function login($con, $data, $userPassword){
-        $con->query('SELECT A.*, B.*, C.* FROM USER_INFO A 
+        $con->query('SELECT A.*, B.* FROM USER_INFO A 
                      INNER JOIN USER_LOGIN_CREDENTIALS B
                      ON A.USER_ID = B.USER_ID
-                     LEFT JOIN USER_PROFILE_IMG C
-                     ON A.USER_ID = C.USER_CONTROL_NO
-                     LEFT JOIN USER_COVER_PHOTO D
-                     ON A.USER_ID = C.USER_CONTROL_NO
                      WHERE B.UNAME = :user_uname_email 
                      OR B.EMAIL = :user_uname_email');
 
@@ -122,6 +118,24 @@ class UserModel  {
         }
     }
 
+    public function uploadProfileCover($con, $data){
+        $con->query('INSERT INTO USER_COVER_PHOTO(USER_CONTROL_NO, COVER_IMG, UPLOADED_DATE)
+                                           VALUES(:USER_CONTROL_NO, :COVER_IMG, :UPLOADED_DATE)');
+
+        $con->bind(':USER_CONTROL_NO', $data['user_id']);    
+        $con->bind(':COVER_IMG', $data['acctFile']);   
+        $con->bind(':UPLOADED_DATE', $data['dateUpload']);      
+        
+        $inserted = $con->execute();
+
+        if($inserted){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public function uptDateProfilePic($con, $data){
         $con->query('UPDATE USER_PROFILE_IMG SET PROFILE_IMG = :PROFILE_IMG, UPLOADED_DATE = :UPLOADED_DATE
                      WHERE USER_CONTROL_NO = :USER_CONTROL_NO');
@@ -140,19 +154,47 @@ class UserModel  {
         }
     }
 
+    public function uptDateProfileCover($con, $data){
+        $con->query('UPDATE USER_COVER_PHOTO SET COVER_IMG = :COVER_IMG, UPLOADED_DATE = :UPLOADED_DATE
+                     WHERE USER_CONTROL_NO = :USER_CONTROL_NO');
+
+        $con->bind(':USER_CONTROL_NO', $data['user_id']);    
+        $con->bind(':COVER_IMG', $data['acctFile']);   
+        $con->bind(':UPLOADED_DATE', $data['dateUpload']);      
+        
+        $inserted = $con->execute();
+
+        if($inserted){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
 
 
     public function getProfilePic($con, $data){
         $con->query('SELECT * FROM USER_PROFILE_IMG WHERE USER_CONTROL_NO = :USER_CONTROL_NO');
 
-        $con->bind(':USER_CONTROL_NO', $data['user_id']); 
+        $con->bind(':USER_CONTROL_NO', $data); 
         $con->execute();     
-        $rows = $con->fetchAll();
+        $rows = $con->single();
         return $rows;                
     }
 
-    public function chkExistingProfile($con, $data){
-        $con->query('SELECT * FROM USER_PROFILE_IMG WHERE USER_CONTROL_NO = :USER_CONTROL_NO');
+    public function getCoverPic($con, $data){
+        $con->query('SELECT * FROM USER_COVER_PHOTO WHERE USER_CONTROL_NO = :USER_CONTROL_NO');
+
+        $con->bind(':USER_CONTROL_NO', $data); 
+        $con->execute();     
+        $rows = $con->single();
+        return $rows;                
+    }
+    
+
+    public function chkExistingProfile($con, $table, $data){
+        $con->query('SELECT * FROM '. $table .' WHERE USER_CONTROL_NO = :USER_CONTROL_NO');
 
         $con->bind(':USER_CONTROL_NO', $data['user_id']); 
         $con->execute();   

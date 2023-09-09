@@ -17,10 +17,10 @@ class AccountCtrler extends Controller {
         require_once $this->checkUserData($view);
     }
 
-    public function uploadProfilePic(){
+    public function uploadProfilePicAndCover($trans){
         $user_data = [
             'user_id' => '',
-            'profilePic' => '',
+            'img' => '',
             'acctFile' => '' ,
             'dateUpload' => '',
             'randomNum' => ''
@@ -31,13 +31,13 @@ class AccountCtrler extends Controller {
 
                 $user_data = [
                     'user_id' => $post['user_id'],
-                    'profilePic' => $_FILES['profilePic'],
+                    'img' => $_FILES['img'],
                     'acctFile' => '' ,
                     'dateUpload' => date("Y-m-d H:i:s a") ,
                     'randomNum' => mt_rand()
                     ];
 
-                    $fileImg = $user_data['profilePic'];
+                    $fileImg = $user_data['img'];
 
                     $profileFileName = $fileImg['name'];
                     $fileTmpName = $fileImg['tmp_name'];
@@ -63,22 +63,51 @@ class AccountCtrler extends Controller {
                             if($fileSize <= $sizelimit){
 
                                 $fileToMove = $user_data['acctFile'];
-                                $setPathForFileUpload = OUTSIDEPROJ .'/MySiteAdminSide/public/profilePics/'. basename($fileToMove);
+
+                                IF ($trans === PROFILEPIC) {
+                                    $setPathForFileUpload = OUTSIDEPROJ .'/MySiteAdminSide/public/profilePics/'. basename($fileToMove);
+                                }
+                                ELSEIF ($trans === PROFILECOVER) {
+                                    $setPathForFileUpload = OUTSIDEPROJ .'/MySiteAdminSide/public/coverPhoto/'. basename($fileToMove);
+                                }
+                               
                                 $movedImgFile = move_uploaded_file($fileTmpName, $setPathForFileUpload);
 
                                 if ($movedImgFile){
 
-                                    $isExist = $this->userModel->chkExistingProfile($this->connection, $user_data);
+                                    IF ($trans === PROFILEPIC) {
+                                        $isExist = $this->userModel->chkExistingProfile($this->connection, 'USER_PROFILE_IMG', $user_data);
                                     
-                                    if (!$isExist) {
-                                        $isUploaded = $this->userModel->uploadProfilePic($this->connection, $user_data);
+                                        if (!$isExist) {
+                                            $isUploaded = $this->userModel->uploadProfilePic($this->connection, $user_data);
+                                        }
+                                        else {
+                                            $isUploaded = $this->userModel->uptDateProfilePic($this->connection, $user_data);
+                                        }
                                     }
-                                    else {
-                                        $isUploaded = $this->userModel->uptDateProfilePic($this->connection, $user_data);
+                                    ELSEIF ($trans === PROFILECOVER) {
+                                        $isExist = $this->userModel->chkExistingProfile($this->connection, 'USER_COVER_PHOTO', $user_data);
+
+                                        if (!$isExist) {
+                                            $isUploaded = $this->userModel->uploadProfileCover($this->connection, $user_data);
+                                        }
+                                        else {
+                                            $isUploaded = $this->userModel->uptDateProfileCover($this->connection, $user_data);
+                                        }
                                     }
-                                    
+                                   
                                     IF ($isUploaded) {
-                                        echo json_encode($this->userModel->getProfilePic($this->connection, $user_data));
+                                        IF ($trans === PROFILEPIC) {
+                                            $getUploaded = $this->userModel->getProfilePic($this->connection,$user_data['user_id']);
+                                            $_SESSION['profile_pic'] = $getUploaded->PROFILE_IMG;
+                                            echo $getUploaded->PROFILE_IMG;
+                                        }
+                                        ELSEIF ($trans === PROFILECOVER) {
+                                            $getUploaded = $this->userModel->getCoverPic($this->connection,$user_data['user_id']);
+                                            $_SESSION['cover_pic'] = $getUploaded->COVER_IMG;
+                                            echo $getUploaded->COVER_IMG;
+                                        }
+                                       
                                     }
                                 }
                             }
@@ -95,5 +124,7 @@ class AccountCtrler extends Controller {
                     }
             }
     }
+
+
 
 }

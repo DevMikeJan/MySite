@@ -38,9 +38,12 @@ class LoginCtrler extends Controller {
                     $getLoginCredentials = $this->userModel->login($this->connection, $datas['user_uname_email'],$datas['user_password']);
 
                     if ($getLoginCredentials){
+                        $getProfilePic = $this->userModel->getProfilePic($this->connection, $getLoginCredentials->USER_ID);
+                        $getPrfileCover = $this->userModel->getCoverPic($this->connection, $getLoginCredentials->USER_ID);
+
                         $activeStat = $this->userModel->uptStatActive($this->connection, $datas);
 
-                        $this->createUserSession($getLoginCredentials);
+                        $this->createUserSession($getLoginCredentials,$getProfilePic,$getPrfileCover);
                     }
                     else {
                         $datas['error_message'] = 'Invalid Password';
@@ -58,7 +61,7 @@ class LoginCtrler extends Controller {
         require_once $this->checkUserData($view);
     }
 
-    private function createUserSession($user){
+    private function createUserSession($user, $profilePic, $coverPic){
         $_SESSION['user_id'] = $user->USER_ID;
         $_SESSION['active_stat'] = $user->ACTIVE;
         $_SESSION['user_uname'] = $user->UNAME;
@@ -67,8 +70,8 @@ class LoginCtrler extends Controller {
         $_SESSION['user_lname'] = $user->LNAME;
         $_SESSION['user_email'] = $user->EMAIL;
         $_SESSION['user_type'] = $user->USER_ACCESS;
-        $_SESSION['profile_pic'] = $user->PROFILE_IMG;
-        $_SESSION['cover_pic'] = $user->COVER_IMG;
+        $_SESSION['profile_pic'] = $profilePic->PROFILE_IMG;
+        $_SESSION['cover_pic'] = $coverPic->COVER_IMG;
 
         if($user->user_type != '1')
             header('location:' . URLROOT . '/');
