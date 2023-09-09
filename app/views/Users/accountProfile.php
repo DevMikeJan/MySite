@@ -15,6 +15,9 @@
 <div class = "profile_container">
     <div class = "profile_wrapper">
         <div class = "profile_top_wrapper">
+            <div class = "Home_button">
+                <span><a href='<?php echo URLROOT . '/';?>'>Hone</a></span>
+            </div>
             <div class = "profile_img_wrapper">
                 <div class = "profile_inner_wrapper">
                     <div class = "profile_img_holder">
@@ -37,6 +40,7 @@
                 </div>
             </div>
             <div class = "profile_cover_container">
+            
                 <div class = "profile_cover_wrapper">
                         <?php if(is_null($_SESSION['cover_pic'])): ?>
                             <img class = "profile_cover_act_img" id = "profile_cover_act_img" src="<?php echo URLROOTADMINSIDE . '/public/icons/';?>defaultUserProf.png" alt="">

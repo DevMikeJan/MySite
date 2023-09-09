@@ -1,3 +1,8 @@
+a{
+    text-decoration: none;
+    color: #f1f1f1;
+}
+
 .profile_container {
     width: 100%;
     height: 100%;
@@ -15,6 +20,29 @@
     width: 100%;
     margin: auto;
     height: 20rem;
+}
+
+.Home_button {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 2;
+}
+
+.Home_button > span {
+    cursor: pointer;
+}
+
+.Home_button > span > a {
+    width: 100%;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.Home_button > span > a:hover {
+    opacity: .5;
+    transition: .5s;
+    color: #f1f1f1;
 }
 
 .profile_cover_container {
