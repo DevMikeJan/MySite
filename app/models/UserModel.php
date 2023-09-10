@@ -210,7 +210,9 @@ class UserModel  {
                     UNION ALL
                     SELECT ASSET_DEVELOPER_ID AS USER_ID, ASSET_DEVELOPER_BY AS USER_NAME, 	ASSET_UPLOADED_DATE AS DATE_C, 
                     CONCAT(ASSET_NAME, "-", ASSET_DESC) AS DESCR
-                    FROM ASSETS_UPLOAD )A WHERE A.USER_ID = :USER_ID ORDER BY A.DATE_C DESC');
+                    FROM ASSETS_UPLOAD )A WHERE A.USER_ID = :USER_ID 
+                    ORDER BY A.DATE_C DESC 
+                    LIMIT 15');
 
         $con->bind(':USER_ID', $data);
         $con->execute();

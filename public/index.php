@@ -12,6 +12,7 @@ use App\controllers\LoginCtrler;
 use App\controllers\LogoutCtrler;
 use App\controllers\AssetsCtrler;
 use App\controllers\AccountCtrler;
+use App\controllers\UploadMyAssets;
 
 //echo rand(100000000,999999999);
 
@@ -90,6 +91,19 @@ Routes::get('UploadCoverPhoto', function(){
     $viewProfile = new AccountCtrler($database);
     $viewProfile->uploadProfilePicAndCover(PROFILECOVER);
 });
+
+Routes::get('UploadMyAsset', function(){
+    $database = new Database();
+    $viewProfile = new UploadMyAssets($database);
+    $viewProfile->viewPage('uploadMyAssets');
+});
+
+Routes::get('ProceedUpload', function(){
+    $database = new Database();
+    $viewProfile = new UploadMyAssets($database);
+    $viewProfile->uploadAsset();
+});
+
 
 
 

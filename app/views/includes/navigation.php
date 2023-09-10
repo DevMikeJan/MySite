@@ -1,5 +1,5 @@
 
-
+<?php $_SESSION['PREVIOUSPAGE'] = '/' ?>
 <nav class = "main_nav">
     <div class = "nav_container">
         <div class = "grid_item1">
@@ -33,6 +33,9 @@
                                 </li>
                                 <li>
                                     <a href="<?php echo URLROOT; ?>/Profile">Account</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo URLROOT; ?>/UploadMyAsset">Upload My Asset</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo URLROOT; ?>/Logout">Logout</a>

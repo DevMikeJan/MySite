@@ -30,5 +30,6 @@
     <script src = "<?php echo URLROOT; ?>/public/js/asset.js"></script>
     <script src = "<?php echo URLROOT; ?>/public/js/profile.js"></script>
 </head>
-
 <body>
+  
+<img class = "bg_main" src="<?php echo URLROOTADMINSIDE . '/public/icons/';?>bgForMySite.jpg" alt="">

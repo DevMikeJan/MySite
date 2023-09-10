@@ -34,6 +34,22 @@
     height: 25px;
     border-radius: 5px;
     color: #000;
+    border: 0;
+    outline: 0;
+    background: none;
+    border-bottom: 1px solid #000;
+    padding-left: 3px;
+}
+
+.signup_wrapper form ,select option {
+    background: none;
+    color: #000;
+    border: 0;
+    outline: 0;
+}
+
+.signup_wrapper form select {
+    background: none;
 }
 
 

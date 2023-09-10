@@ -29,6 +29,7 @@ class LogoutCtrler extends Controller{
             unset($_SESSION['user_type']);
             unset($_SESSION['profile_pic']);
             unset($_SESSION['cover_pic']);
+            unset($_SESSION['PREVIOUSPAGE']);
     
             
             header('location:' . URLROOT . '/');

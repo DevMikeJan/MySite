@@ -2,15 +2,11 @@
     require_once APPROOT . '/views/includes/userAccess.php';
 ?>
 
-
-
 <?php
     require_once APPROOT . '/views/includes/header.php';
 ?>
 
-<?php
-    require_once APPROOT . '/views/includes/header.php';
-?>
+<?php $_SESSION['PREVIOUSPAGE'] = '/Profile' ?>
 
 <div class = "profile_container">
     <div class = "profile_wrapper">

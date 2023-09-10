@@ -21,6 +21,9 @@
  define('PROFILEPIC', 'PROFILE PIC');
  define('PROFILECOVER', 'PROFILE COVER');
 
+ 
+ $_SESSION['PREVIOUSPAGE'] = '';
+
  //sitename
  define('SITENAME', 'MySite');
 

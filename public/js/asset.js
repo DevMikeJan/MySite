@@ -445,5 +445,63 @@ $(document).ready(function(){
     });
 
 
-    
+    //Upload Asset Section
+    $("#manage_asset_img_src_ph").click(function(){
+        $("#manage_asset_file_img").trigger("click");
+    });
+
+
+     //select image
+     $(".manage_asset_file_img").change(function(){
+        var imgPath = $(this).val();
+
+        var ext = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+
+        if(ext == "gif" || ext == "png" || ext == "jpg" || ext == "jpeg"){
+
+            if(typeof(FileReader) != "undefined"){
+                var reader = new FileReader();
+                
+                reader.onload = function(e){
+                    $("#manage_asset_img_src_ph").attr('src',e.target.result);
+                 }
+                reader.readAsDataURL($(this)[0].files[0]);
+            }
+            else {
+                alert("This browser does not support FileReader.");
+            }
+        }
+        else {
+            alert("Pls select only images");
+        }
+    });
+
+    $(".manage_asset_form").submit(function(e){
+        e.preventDefault();
+        var upload_link = $("#manage_uploadAssetsLink").val();
+
+        var assets_file_rar = $("#manage_asset_file").prop("files")[0];
+        var assets_img = $("#manage_asset_file_img").prop("files")[0];
+        var assets_name = $("#manage_asset_name").val();
+        var asset_desc = $("#manage_asset_desc").val();
+
+
+        var new_form_data = new FormData();
+        new_form_data.append("asset_file_rar", assets_file_rar);
+        new_form_data.append("asset_img", assets_img);
+        new_form_data.append("asset_name", assets_name);
+        new_form_data.append("asset_desc", asset_desc);
+
+        $.ajax({
+            url: upload_link,
+            method:'POST',
+            data:new_form_data,
+            contentType:false,
+            cache:false,
+            processData:false,
+            success:function(data){
+              $('#manage_asset_process_msg').html(data);
+            }
+          });
+    });
 });

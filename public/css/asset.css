@@ -314,3 +314,108 @@
     width: 20px;
     height: 100%;
 }
+
+
+/*Manage My Asset Section*/
+.manage_assets_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.manage_my_asset_close_form_container {
+    width: 30px;
+    text-align: center;
+    float: right;
+}
+
+.manage_my_asset_close_form_container > span > a {
+    width: 100%;
+}
+
+.manage_my_asset_close_form_container > span > a:hover {
+    color:#000;
+    opacity: .5;
+    transition: .5s;
+}
+
+
+.manage_my_asset_wrapper {
+    width: 30%;
+    height: 40%;
+    background-color: #18413F;
+    border-radius: 5px;
+}
+
+.manage_my_asset_header {
+    width: 100%;
+    text-align: center;
+}
+
+.manage_asset_form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.manage_my_asset_img_wrapper {
+    width: 100%;
+    height: 10rem;
+    overflow: hidden;
+    display: flex;
+    gap: 5rem;
+}
+
+.upload_asset_img_prev {
+    width: 10rem;
+    overflow: hidden;
+    padding: .5rem;
+    background-color: #2F7587;
+    border-radius: 5px;
+}
+
+.upload_asset_img_prev > img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.upload_asset_user_input {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.manage_assets_rar > input, .manage_assets_img > input {
+    width: 10rem;
+    cursor: pointer;
+}
+
+.upload_asset_user_input > input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: none;
+    border-bottom: 1px solid #000;
+    border-radius: 5px;
+    padding-left: 3px;
+}
+
+.upload_asset_user_input > button {
+    width: 70px;
+    border: none;
+    border-radius: 3px;
+    color: #23302E;
+    margin-top: 1rem;
+}
+
+.upload_asset_user_input > button:hover {
+    opacity: .5;
+    transition: .5s;
+}
