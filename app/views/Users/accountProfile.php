@@ -70,8 +70,45 @@
             </div>
             <div class = "profile_asset_button_container">
                 <div class = "profile_asset_button_wrapper">
-                    
+                    <span>Activities</span>
+                    <span>My Assets</span>
                 </div>
+            </div>
+        </div>
+        <div class = "profile_activities_container">
+            <div class = "profile_activities_wrapper">
+               <input class = "all_actitivities" id = "all_actitivities" type="hidden" value = '<?php echo  $getAllRecentActitives; ?>' name = "all_actitivities">
+               <?php foreach ($getAllRecentActitives as $getAllRecentActitivy):?>
+                    <div class = "profile_reviews_actitivities_container">
+                        <div class = "profile_reviews_actitivities_wrapper">
+                            <span>
+                                Recent Reviews
+                            </span><br>
+                            <span>
+                                Date Reviewed: <?php echo date("Y/m/d",strtotime($getAllRecentActitivy->REVIEW_DATE)); ?>
+                            </span><br>
+                            <span>
+                                <?php echo $getAllRecentActitivy->REVIEW_BY_NAME; ?>
+                            </span><br>
+                            <span>
+                                <?php echo $getAllRecentActitivy->ASSET_REVIEW_COMMENT; ?>
+                            </span><br>
+                        </div>
+                    </div>
+                    <div class = "profile_recent_upload_assets_container">
+                        <div class = "profile_recent_upload_assets_wrapper">
+                            <span>
+                                Recent Asset Uploads
+                            </span><br>
+                            <span>
+                                <?php echo $getAllRecentActitivy->ASSET_NAME; ?>
+                            </span><br>
+                            <span>
+                                <?php echo $getAllRecentActitivy->ASSET_DESC; ?>
+                            </span><br>
+                        </div>
+                    </div>
+                <?php endforeach;?>
             </div>
         </div>
     </div>

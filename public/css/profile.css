@@ -11,7 +11,6 @@ a{
 .profile_wrapper {
     width: 60%;
     margin: auto;
-    height: 100%;
     background-color: #123F49;
 }
 
@@ -182,4 +181,52 @@ a{
     transition: .5s;
 }
 
+.profile_asset_button_container {
+    position: relative;
+    width: 100%;
+}
+
+.profile_asset_button_wrapper {
+    position: absolute;
+    bottom: .2rem;
+    left: 10rem;
+}
+
+.profile_asset_button_wrapper > span {
+    width: 3rem;
+    height: 10px;
+    margin-left: 2px;
+    cursor: pointer;
+    background-color: #342757;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 3px;
+}
+
+.profile_asset_button_wrapper > span:hover {
+    opacity: .5;
+    transition: .5s;
+}
+
+.profile_activities_container {
+    width: 100%;
+}
+
+
+.profile_activities_wrapper {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.profile_reviews_actitivities_container, .profile_recent_upload_assets_container {
+    width: 100%;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.profile_reviews_actitivities_wrapper > span, .profile_recent_upload_assets_wrapper > span {
+    color: #000;
+}
 

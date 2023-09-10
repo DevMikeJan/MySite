@@ -202,4 +202,18 @@ class UserModel  {
 
         return ($row > 0) ? true : false;
     }
+
+    public function getActitivites($con, $data){
+        $con->query('SELECT * FROM asset_reviews A LEFT JOIN assets_upload B 
+                     ON A.REVIEW_BY_ID = B.ASSET_DEVELOPER_ID
+                     WHERE A.REVIEW_BY_ID = :REVIEW_BY_ID
+                     ORDER BY  B.ASSET_UPLOADED_DATE DESC, A.REVIEW_DATE DESC');
+
+        $con->bind(':REVIEW_BY_ID', $data);
+        $con->execute();
+        $row = $con->rowCount();
+        $fetch = $con->fetchAll();
+
+        return ($row > 0) ? $fetch : false;
+    }
 }

@@ -9,11 +9,10 @@ class AccountCtrler extends Controller {
     public function __construct($conn){
         $this->userModel = $this->model('UserModel', $this->connection);
         $this->connection = $conn;
-        
     }
 
     public function viewProfile($view){
-
+        $getAllRecentActitives = $this->userModel->getActitivites($this->connection, $_SESSION['user_id']);
         require_once $this->checkUserData($view);
     }
 
