@@ -204,12 +204,15 @@ class UserModel  {
     }
 
     public function getActitivites($con, $data){
-        $con->query('SELECT * FROM asset_reviews A LEFT JOIN assets_upload B 
-                     ON A.REVIEW_BY_ID = B.ASSET_DEVELOPER_ID
-                     WHERE A.REVIEW_BY_ID = :REVIEW_BY_ID
-                     ORDER BY  B.ASSET_UPLOADED_DATE DESC, A.REVIEW_DATE DESC');
+        $con->query('SELECT USER_ID, USER_NAME, DATE_C, DESCR FROM
+                    (SELECT REVIEW_BY_ID AS USER_ID, REVIEW_BY_NAME AS USER_NAME, REVIEW_DATE AS DATE_C, ASSET_REVIEW_COMMENT AS DESCR
+                    FROM ASSET_REVIEWS 
+                    UNION ALL
+                    SELECT ASSET_DEVELOPER_ID AS USER_ID, ASSET_DEVELOPER_BY AS USER_NAME, 	ASSET_UPLOADED_DATE AS DATE_C, 
+                    CONCAT(ASSET_NAME, "-", ASSET_DESC) AS DESCR
+                    FROM ASSETS_UPLOAD )A WHERE A.USER_ID = :USER_ID ORDER BY A.DATE_C DESC');
 
-        $con->bind(':REVIEW_BY_ID', $data);
+        $con->bind(':USER_ID', $data);
         $con->execute();
         $row = $con->rowCount();
         $fetch = $con->fetchAll();

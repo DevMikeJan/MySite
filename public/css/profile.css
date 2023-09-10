@@ -142,7 +142,7 @@ a{
     height: 10rem;
     background-color: #17171A;
     display: grid;
-    grid-template-ROWS: 50% 50%;
+    grid-template-rows: 50% 50%;
 }
 
 .profile_user_name_holder {
@@ -208,6 +208,13 @@ a{
     transition: .5s;
 }
 
+.profile_content_container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100% 0;
+    transition: .5s;
+}
+
 .profile_activities_container {
     width: 100%;
 }
@@ -221,12 +228,16 @@ a{
     gap: 2px;
 }
 
-.profile_reviews_actitivities_container, .profile_recent_upload_assets_container {
+.profile_reviews_actitivities_container {
     width: 100%;
     border-bottom: 1px solid #f1f1f1;
 }
 
-.profile_reviews_actitivities_wrapper > span, .profile_recent_upload_assets_wrapper > span {
+.profile_reviews_actitivities_wrapper > span {
     color: #000;
 }
 
+.profile_asset_container {
+    width: 100%;
+    background-color: black;
+}

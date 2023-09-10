@@ -150,4 +150,13 @@ $(document).ready(function(){
     //     });
     // }
 
+
+    $("#profile_activities_btn").click(function(){
+        $(".profile_content_container").css({"display":"grid", "grid-template-columns":"100% 0"});
+    });
+
+    $("#profile_asset_btn").click(function(){
+        $(".profile_content_container").css({"display":"grid", "grid-template-columns":"0 100%"});
+    });
+
 });
