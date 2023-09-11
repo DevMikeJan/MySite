@@ -53,11 +53,10 @@ class UploadMyAssets extends Controller {
                 'random_number_rar' => mt_rand(),
                 'random_number_img' => mt_rand(),
                 'uploader_id' => $_SESSION['user_id'],
-                'uploader_name' => $_SESSION['user_fname'] & $_SESSION['user_mname'] &  $_SESSION['user_lname'],
+                'uploader_name' => $_SESSION['user_fname'] .' '. $_SESSION['user_mname'] .' '.  $_SESSION['user_lname'],
                 'uploaded_date' => date("Y-m-d H:i:s a"),
                 'error_message' => ''
             ];
-
 
             $assetRar = $assets['asset_file_rar'];
             $assetImg = $assets['asset_img'];
@@ -84,8 +83,8 @@ class UploadMyAssets extends Controller {
            
            $movedRarFile = $assets['asset_name'] . $assets['random_number_rar']. "." . $rarActualExt;
            $moveImgFile = $assets['asset_name'] . $assets['random_number_img']. "." . $imgActualExt;
-           $setPathForRarFileUpload = URLROOTADMINSIDE .'/public/uploadedAssets/'. basename($movedRarFile);
-           $setPathForImgFileUpload = URLROOTADMINSIDE .'/public/uploadedAssets/'. basename($moveImgFile);
+           $setPathForRarFileUpload = ADMINDIRECTLINK .'/public/uploadedAssets/'. basename($movedRarFile);
+           $setPathForImgFileUpload = ADMINDIRECTLINK .'/public/uploadedAssets/'. basename($moveImgFile);
         
 
            $assets['random_number_rar'] = $movedRarFile;

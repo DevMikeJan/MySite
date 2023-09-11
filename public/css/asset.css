@@ -343,10 +343,10 @@
 
 
 .manage_my_asset_wrapper {
-    width: 30%;
+    width: 25%;
     height: 40%;
-    background-color: #18413F;
     border-radius: 5px;
+    box-shadow: 0 0 5px 5px #f1f1f1;
 }
 
 .manage_my_asset_header {
