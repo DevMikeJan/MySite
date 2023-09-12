@@ -212,7 +212,7 @@ class UserModel  {
                     CONCAT(ASSET_NAME, "-", ASSET_DESC) AS DESCR
                     FROM ASSETS_UPLOAD )A WHERE A.USER_ID = :USER_ID 
                     ORDER BY A.DATE_C DESC 
-                    LIMIT 15');
+                    LIMIT 10');
 
         $con->bind(':USER_ID', $data);
         $con->execute();

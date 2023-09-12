@@ -12,6 +12,8 @@
                 <img class = "close_asset_dtl" id = "close_asset_dtl" src="<?php echo URLROOTADMINSIDE . '/public/icons/';?>close.png" alt="">
             </div>
             <div class = "asset_info_section">
+                <span class = "asset_author" id = "asset_author">Samples</span><br>
+                <span class = "asset_uploaded_date" id = "asset_uploaded_date">Samples</span><br>
                 <span class = "asset_name" id = "asset_name">M16</span><br>
                 <span class = "asset_desc" id = "asset_desc">Use To Shoot Rebel</span>
             
@@ -98,6 +100,7 @@
                         <span class = "asset_id_holder" id = "asset_id_holder"><?php echo $list->ASSETFILE_ID;  ?></span>
                         <span>Name:<?php echo $list->ASSET_NAME;  ?></span>
                         <span>Desc:<?php echo $list->ASSET_DESC;  ?></span>
+                        <span>Developer:<?php echo $list->ASSET_DEVELOPER_BY;  ?></span>
                         <input id = "assetLink" type="hidden" value = "<?php echo URLROOT . '/AssetInfo';?>">
                         <input id = "reviewsLink" type="hidden" value = "<?php echo URLROOT . '/Reviews';?>">
                         <span class = "view_dtl" id = "view_dtl">View Detail</span>

@@ -53,11 +53,15 @@ $(document).ready(function(){
                 reviewID = ""
             }
 
+            var dateUpl = value.ASSET_UPLOADED_DATE;
+
             $("#asset_id").val(value.ASSETFILE_ID);
             $("#asset_review_id").val(reviewID);
             $("#asset_name").text("Name: "+ value.ASSET_NAME);
             $("#asset_desc").text("Description: "+ value.ASSET_DESC);
             $("#asset_img_src").attr("src",fileLink + value.ASSET_IMG_RAN_NUM);
+            $("#asset_author").text("Developer: "+ value.ASSET_DEVELOPER_BY);
+            $("#asset_uploaded_date").text("Date Uploaded: "+ dateUpl);
         });
     }
 
