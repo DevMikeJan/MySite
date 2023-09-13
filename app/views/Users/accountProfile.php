@@ -12,7 +12,7 @@
     <div class = "profile_wrapper">
         <div class = "profile_top_wrapper">
             <div class = "Home_button">
-                <span><a href='<?php echo URLROOT . '/';?>'>Hone</a></span>
+                <span class = "Profile_home_btn" id = "Profile_home_btn"><a href='<?php echo URLROOT . '/';?>'>Home</a></span>
             </div>
             <div class = "profile_img_wrapper">
                 <div class = "profile_inner_wrapper">
@@ -67,6 +67,7 @@
             <div class = "profile_asset_button_container">
                 <div class = "profile_asset_button_wrapper">
                     <span class = "profile_activities_btn" id = "profile_activities_btn">Activities</span>
+                    <input id = "profile_asset_uploaded_link" type="hidden" value = "<?php echo URLROOT . '/GetMyAssets';?>">
                     <span class = "profile_asset_btn" id = "profile_asset_btn">My Assets</span>
                 </div>
             </div>
@@ -93,7 +94,15 @@
                 </div>
             </div>
             <div class = "profile_asset_container">
+                <div class = "profile_asset_wrapper">
+                    <div class = "profile_asset_header">
+                        <span><a href="<?php echo URLROOT . '/UploadMyAsset';?>">Upload Asset</a></span>
+                    </div>
 
+                    <div class = "profile_load_asset_container" id = "profile_load_asset_container">
+
+                    </div>
+                </div>
             </div>
         </div>
         

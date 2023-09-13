@@ -121,5 +121,26 @@ class AssetsCtrler extends Controller {
         }
     }
 
+    public function loadMyAsset($myId){
+        $asset = [
+            'userID' => ''
+        ];
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){ 
+            $asset = [
+                'userID' => $myId
+            ];
+            
+            if (!empty($asset)){
+
+                $getLoadAsset = $this->assetModel->loadMyAssets($this->connection,$asset);
+
+                echo json_encode($getLoadAsset);
+            }
+            else {
+                echo 'User Id Is Not Set';
+            }
+        }
+    }
 
 }

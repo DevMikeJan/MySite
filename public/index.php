@@ -104,6 +104,15 @@ Routes::get('ProceedUpload', function(){
     $viewProfile->uploadAsset();
 });
 
+Routes::get('GetMyAssets', function(){
+    $database = new Database();
+    $loadMyAsset = new AssetsCtrler($database);
+    $loadMyAsset->loadMyAsset($_SESSION['user_id']);
+});
+
+
+
+
 
 
 

@@ -1,4 +1,33 @@
 $(document).ready(function(){
+    var defaultDegree = $(".Home_button").css("transform");
+    var value = defaultDegree.split('(')[1].split(')')[0].split(',');
+    var ab = value[0];
+    var bc = value[1];
+    var defaultAngles = Math.round(Math.atan2(bc, ab) * (180/Math.PI));
+
+            alert(defaultAngles);
+
+    $(".Profile_home_btn").mouseover(function(){
+        var degree = $(".Home_button").css("transform");
+        
+
+        if(degree !== 'none') {
+            var values = degree.split('(')[1].split(')')[0].split(',');
+            var a = values[0];
+            var b = values[1];
+            var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+        } else { var angle = 0; }
+    
+        if(angle > 0){
+            $(".Home_button").css({"transform":"rotate("+ defaultAngles +"deg)","animation-play-state":"paused"});
+        }
+
+    });
+
+    $("#Profile_home_btn").mouseleave(function(){
+        $(".Home_button").css({"animation-play-state":"running"});
+    });
+
 
     $(".profile_img").click(function(){
         $("input.profile_choose_img").trigger("click");
@@ -153,10 +182,58 @@ $(document).ready(function(){
 
     $("#profile_activities_btn").click(function(){
         $(".profile_content_container").css({"display":"grid", "grid-template-columns":"100% 0"});
+        $(".profile_reviews_actitivities_wrapper").css("overflow","auto ");
+        $("#profile_load_asset_container").empty();
     });
 
     $("#profile_asset_btn").click(function(){
         $(".profile_content_container").css({"display":"grid", "grid-template-columns":"0 100%"});
+        $(".profile_reviews_actitivities_wrapper").css("overflow","hidden");
+        loadAssets();
     });
+
+    function loadAssets(){
+        var myAssetUplLink = $("#profile_asset_uploaded_link").val();
+
+        $.ajax({
+            url: myAssetUplLink,
+            method:'POST',
+            data:'',
+            contentType:false,
+            cache:false,
+            processData:false,
+            success:function(data){
+                serLoadedAsset(data);
+            }
+        });
+    }
+
+    function serLoadedAsset($data){
+        try {
+            var objArray = JSON.parse($data);//json used to read php obj array
+            isErr = false;
+        } catch(err) {
+            isErr= true;
+        } finally {
+            //code for finally block
+        }
+
+        if (isErr){
+            alert($data);
+        }
+        else {
+            $.each(objArray, function (key, value) {
+
+                $("#profile_load_asset_container").append("<div> \
+                                                    <img src = ''>\
+                                                    <span>"+ value.ASSET_NAME +" </span><br>\
+                                                    <span>"+ value.ASSET_DESC +" </span><br>\
+                                                    </div>");
+            });
+        }
+
+       
+    }
+
 
 });

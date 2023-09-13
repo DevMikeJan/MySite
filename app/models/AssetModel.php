@@ -131,4 +131,14 @@ class AssetModel {
         }
     }
 
+    public function loadMyAssets($con, $data){
+        $con->query('SELECT * FROM ASSETS_UPLOAD WHERE ASSET_DEVELOPER_ID = :ASSET_DEVELOPER_ID');
+        $con->bind(':ASSET_DEVELOPER_ID', $data['userID']);
+        $con->execute();
+        $row = $con->rowCount();
+        $fetch = $con->fetchAll();
+
+        return ($row > 0) ? $fetch : false;
+    }
+
 }

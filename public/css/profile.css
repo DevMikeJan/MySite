@@ -26,7 +26,14 @@ a{
     top: 1rem;
     left: 1rem;
     z-index: 2;
+    transition: .5s;
+    animation-delay: 2s;
+    animation: mymove 5s infinite;
 }
+
+@keyframes mymove {
+    50% {transform: rotate(180deg);}
+  }
 
 .Home_button > span {
     cursor: pointer;
@@ -239,5 +246,16 @@ a{
 
 .profile_asset_container {
     width: 100%;
-    background-color: black;
+    height: 100%;
+    overflow: hidden;
+}
+
+.profile_asset_wrapper {
+    overflow: hidden;
+}
+
+.profile_asset_header {
+    width: 100%;
+    height: 30px;
+    background-color: #242137;
 }
