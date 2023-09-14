@@ -262,16 +262,14 @@ a{
 
 
 .profile_load_asset_container {
-    width: 100%;
     background-color: red;
     display: grid;
-    grid-template-columns: 30% 30% 30% 30%;
+    grid-template-columns: auto auto auto;
     gap: 2px;
     overflow: hidden;
     padding: .2rem;
 }
 
 .profile_loaded_assets {
-    width: 20rem;
     background-color: blue;
 }
