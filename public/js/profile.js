@@ -5,7 +5,6 @@ $(document).ready(function(){
     var bc = value[1];
     var defaultAngles = Math.round(Math.atan2(bc, ab) * (180/Math.PI));
 
-            alert(defaultAngles);
 
     $(".Profile_home_btn").mouseover(function(){
         var degree = $(".Home_button").css("transform");
@@ -21,13 +20,11 @@ $(document).ready(function(){
         if(angle > 0){
             $(".Home_button").css({"transform":"rotate("+ defaultAngles +"deg)","animation-play-state":"paused"});
         }
-
     });
 
     $("#Profile_home_btn").mouseleave(function(){
         $(".Home_button").css({"animation-play-state":"running"});
     });
-
 
     $(".profile_img").click(function(){
         $("input.profile_choose_img").trigger("click");
@@ -221,10 +218,12 @@ $(document).ready(function(){
         if (isErr){
             alert($data);
         }
+        
         else {
+            $("#profile_load_asset_container").empty();
             $.each(objArray, function (key, value) {
 
-                $("#profile_load_asset_container").append("<div> \
+                $("#profile_load_asset_container").append("<div class = 'profile_loaded_assets'> \
                                                     <img src = ''>\
                                                     <span>"+ value.ASSET_NAME +" </span><br>\
                                                     <span>"+ value.ASSET_DESC +" </span><br>\

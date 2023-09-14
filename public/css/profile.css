@@ -259,3 +259,19 @@ a{
     height: 30px;
     background-color: #242137;
 }
+
+
+.profile_load_asset_container {
+    width: 100%;
+    background-color: red;
+    display: grid;
+    grid-template-columns: 30% 30% 30% 30%;
+    gap: 2px;
+    overflow: hidden;
+    padding: .2rem;
+}
+
+.profile_loaded_assets {
+    width: 20rem;
+    background-color: blue;
+}
