@@ -31,7 +31,6 @@ namespace app\libraries; use PDO;
         }
 
         public function openCon($dbN) {
-            $returnVal;
             $conn = 'mysql:host=' . $this->dbHost . ';dbname=' . $dbN;
             $options = array(
                 PDO::ATTR_PERSISTENT => true,
