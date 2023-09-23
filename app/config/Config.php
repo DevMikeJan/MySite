@@ -18,6 +18,7 @@
  define('URLROOTADMINSIDE', 'http://localhost/Projects/MySiteAdminSide');
 
  define('ADMINDIRECTLINK',$_SERVER["DOCUMENT_ROOT"] .'/Projects/MySiteAdminSide');
+ define('OUTSIDEROOT',$_SERVER["DOCUMENT_ROOT"]);
 
  //what to upload
  define('PROFILEPIC', 'PROFILE PIC');

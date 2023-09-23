@@ -97,10 +97,11 @@
                 <div class = "profile_asset_wrapper">
                     <div class = "profile_asset_header">
                         <span><a href="<?php echo URLROOT . '/UploadMyAsset';?>">Upload Asset</a></span>
+                        <input type="hidden" id = "prof_uploaded_img_src" value = "<?php echo URLROOTADMINSIDE ?>">
                     </div>
 
                     <div class = "profile_load_asset_container" id = "profile_load_asset_container">
-                    
+
                     </div>
                 </div>
             </div>

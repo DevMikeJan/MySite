@@ -205,7 +205,11 @@ $(document).ready(function(){
         });
     }
 
+    var imgSrc = '/public/uploadedAssets/'
+
     function serLoadedAsset($data){
+        var srcUploadedImg = $("#prof_uploaded_img_src").val() + imgSrc;
+        var fullPath = '';
         try {
             var objArray = JSON.parse($data);//json used to read php obj array
             isErr = false;
@@ -222,12 +226,13 @@ $(document).ready(function(){
         else {
             $("#profile_load_asset_container").empty();
             $.each(objArray, function (key, value) {
-
+                fullPath = srcUploadedImg + value.ASSET_IMG_RAN_NUM 
+                
                 $("#profile_load_asset_container").append("<div class = 'profile_loaded_assets'> \
-                                                    <img src = ''>\
-                                                    <span>"+ value.ASSET_NAME +" </span><br>\
-                                                    <span>"+ value.ASSET_DESC +" </span><br>\
-                                                    </div>");
+                                                            <img id = 'my_asset_img' class = 'my_asset_img' src = '"+ fullPath +"'><br>\
+                                                            <span>"+ value.ASSET_NAME +" </span><br>\
+                                                            <span>"+ value.ASSET_DESC +" </span><br>\
+                                                            </div>");
             });
         }
 
