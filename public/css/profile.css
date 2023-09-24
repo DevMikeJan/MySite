@@ -246,7 +246,7 @@ a{
 
 .profile_asset_container {
     width: 100%;
-    height: 100%;
+    height: auto;
     overflow: hidden;
 }
 
@@ -272,7 +272,13 @@ a{
 }
 
 .profile_loaded_assets {
-    height: 100%;
+    background-color: #3F404A;
+    cursor: pointer;
+}
+
+
+.profile_loaded_assets:hover {
+    transform: scale(.9, .9);
 }
 
 .profile_loaded_assets > img {
