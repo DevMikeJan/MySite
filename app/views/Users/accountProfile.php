@@ -106,6 +106,17 @@
                 </div>
             </div>
         </div>
-        
     </div>
+</div>
+
+<div class = "edit_asset_container">
+        <div class = "edit_asset_wrapper">
+            <form action="">
+                <div class = "edit_asset_info_container">
+
+                </div>
+                <input type="hidden">
+                <input type="text">
+            </form>
+        </div>
 </div>
