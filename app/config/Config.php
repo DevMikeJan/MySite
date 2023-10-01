@@ -28,5 +28,3 @@
 
  //sitename
  define('SITENAME', 'MySite');
-
- 

@@ -111,12 +111,16 @@
 
 <div class = "edit_asset_container">
         <div class = "edit_asset_wrapper">
+            <div class = "close_asset_container" id = "close_asset_container">
+                <span class = "close_asset" id = "close_asset">Close</span>
+            </div>
             <form action="">
                 <div class = "edit_asset_info_container">
 
                 </div>
                 <input type="hidden">
                 <input type="text">
+                <button></button>
             </form>
         </div>
 </div>

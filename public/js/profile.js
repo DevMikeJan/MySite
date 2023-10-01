@@ -228,7 +228,7 @@ $(document).ready(function(){
             $.each(objArray, function (key, value) {
                 fullPath = srcUploadedImg + value.ASSET_IMG_RAN_NUM 
                 
-                $("#profile_load_asset_container").append("<div class = 'profile_loaded_assets'> \
+                $("#profile_load_asset_container").append("<div class = 'profile_loaded_assets' id = 'profile_loaded_assets'> \
                                                             <img id = 'my_asset_img' class = 'my_asset_img' src = '"+ fullPath +"'><br>\
                                                             <span>"+ value.ASSET_NAME +" </span><br>\
                                                             <span>"+ value.ASSET_DESC +" </span><br>\
@@ -239,5 +239,23 @@ $(document).ready(function(){
        
     }
 
+    var isEditAssetVisisble = false
+
+    $("#profile_load_asset_container").on('click', '#profile_loaded_assets',function(){
+
+        if (isEditAssetVisisble == false) {
+            $(".edit_asset_container").css({"transform":"translateY(0)"});
+            isEditAssetVisisble = true;
+        }
+        
+    });
+
+    $("#close_asset_container").click(function(){
+
+        if (isEditAssetVisisble == true) { 
+            $(".edit_asset_container").css({"transform":"translateY(-1000px)"});
+            isEditAssetVisisble = false
+        }
+    });
 
 });
