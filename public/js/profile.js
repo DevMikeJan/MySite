@@ -230,8 +230,8 @@ $(document).ready(function(){
                 
                 $("#profile_load_asset_container").append("<div class = 'profile_loaded_assets' id = 'profile_loaded_assets'> \
                                                             <img id = 'my_asset_img' class = 'my_asset_img' src = '"+ fullPath +"'><br>\
-                                                            <span>"+ value.ASSET_NAME +" </span><br>\
-                                                            <span>"+ value.ASSET_DESC +" </span><br>\
+                                                            <span class = 'asset_n' id = 'asset_n'>"+ value.ASSET_NAME +" </span><br>\
+                                                            <span class = 'asset_desc' id = 'asset_desc'>"+ value.ASSET_DESC +" </span><br>\
                                                             </div>");
             });
         }
@@ -240,22 +240,46 @@ $(document).ready(function(){
     }
 
     var isEditAssetVisisble = false
-
+    var viewAssetName = "";
+    var viewAssetDesc = "";
+    
     $("#profile_load_asset_container").on('click', '#profile_loaded_assets',function(){
+        viewAssetName = $(this).find("span#asset_n").text();
+        viewAssetDesc = $(this).find("span#asset_desc").text();
 
         if (isEditAssetVisisble == false) {
             $(".edit_asset_container").css({"transform":"translateY(0)"});
             isEditAssetVisisble = true;
-        }
+
+            showAssetData(true)
+        } 
         
     });
 
-    $("#close_asset_container").click(function(){
+    $("#close_asset_container>span").click(function(){
 
         if (isEditAssetVisisble == true) { 
             $(".edit_asset_container").css({"transform":"translateY(-1000px)"});
             isEditAssetVisisble = false
+
+            showAssetData(false)
         }
     });
+
+
+    function showAssetData(isShow){
+       
+
+
+        if (isShow){
+            $(".view_asset_name").text("Asset Name: " + viewAssetName);
+            $(".view_asset_desc").text("Asset Description: " + viewAssetDesc);
+        }
+        else {
+            $(".view_asset_name").text("");
+            $(".view_asset_desc").text("");
+        }
+        
+    }
 
 });

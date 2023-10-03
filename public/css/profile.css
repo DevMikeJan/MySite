@@ -298,23 +298,40 @@ a{
 }
 
 .edit_asset_wrapper {
-    width: 30%;
-    height: 20rem;
+    width: 25%;
+    height: 15rem;
     margin: auto;
-    background-color: red;
+    background-color: #0B2833;
 
 }
 
 .close_asset_container {
-    width: 30px;
-    height: 10px;
-    cursor: pointer;
-    background-color: black;
+    width: 100%;
+    height: auto;
 }
 
 
 .close_asset_container > span {
+    width: 100px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.close_asset_container > span:hover {
+    opacity: .5;
+    transition: .5s;
+}
+
+.edit_form {
+    position: relative;
     width: 100%;
     height: 100%;
-    color: #f2f2f2;
+    background-color: blue;
+}
+
+.edit_asset_inputs {
+    position: absolute;
+    bottom: 2px;
+    width: 100%;
+    background-color: red;
 }
